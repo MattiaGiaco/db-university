@@ -1,0 +1,43 @@
+1
+SELECT `students`.`surname` AS `cognome`, `degrees`.`name` AS `facolta`
+FROM `students`
+JOIN `degrees` ON  `students`.`degree_id` = `degrees`.`id`
+WHERE `degrees`.`name` LIKE '%laurea in economia';
+
+2
+SELECT `degrees`.`name` AS `nome_corso`, `departments`.`name` AS `nome_dipartimento`
+FROM `degrees` 
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+WHERE `departments`.`name` = 'dipartimento di neuroscienze'
+
+3
+SELECT `courses`.`name` AS `corso`, `teachers`.`surname` AS `prof.`
+FROM `course_teacher`
+JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+WHERE `teachers`.`id` = 44
+
+4
+SELECT `students`.`surname` AS `cognome`, `students`.`name` AS `nome`, `degrees`.`name` AS `laurea`, `departments`.`name` AS `dipartimento`
+FROM `students`
+JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+ORDER BY `cognome` ASC, `nome` ASC;
+
+5
+SELECT `degrees`.`name` AS `laurea`, `courses`.`name` AS `corsi`, `teachers`.`surname` AS `prof.`
+FROM `course_teacher`
+JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+JOIN `degrees` ON `courses`.`degree_id` = `degrees`.`id`
+
+6
+SELECT DISTINCT `teachers`.`name` AS `nome`, `teachers`.`surname` AS `cognome`, `departments`.`name` AS `dipartimento`
+FROM `course_teacher`
+JOIN `teachers` ON `course_teacher`.`teacher_id` = `teachers`.`id`
+JOIN `courses` ON `course_teacher`.`course_id` = `courses`.`id`
+JOIN `degrees` ON `courses`.`degree_id` = `degrees`.`id`
+JOIN `departments` ON `degrees`.`department_id` = `departments`.`id`
+WHERE `departments`.`name` = 'dipartimento di matematica';
+
+7
